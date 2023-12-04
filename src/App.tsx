@@ -1,24 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import AddNote from './components/AddNote';
+import FilterForm from './components/FilterForm';
+import Grid from './components/Grid';
+import GridSearchedTag from './components/GridSearchedTag';
+import ModelWindow from './components/ModelWindow';
+import NoteEditForm from './components/NoteEditForm';
+import { useState } from 'react';
 
 function App() {
+  let [editMode, setEditMode] = useState<boolean>(false);
+  const toggleEditMore = (): void => {
+    setEditMode(!editMode);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ModelWindow editMode={editMode} toggleEditMore={toggleEditMore}>
+        <NoteEditForm toggleEditMore={toggleEditMore} />
+      </ModelWindow>
+      <AddNote setEditMode={setEditMode}></AddNote>
+      <FilterForm></FilterForm>
     </div>
   );
 }

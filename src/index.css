@@ -1,13 +1,114 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+}
+body {
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.note {
+  min-width: 150px;
+  max-width: 200px;
+  max-height: 400px;
+  min-height: 300px;
+  border: 1px solid white;
+  background-color: rgb(24, 27, 24);
+  border-radius: 8px;
+  padding: 10px;
+  margin: 7px;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+.grid-searched {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.note-head {
+  font-weight: bold;
+}
+
+.note-edit {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -300px;
+  margin-top: -150px;
+  width: 600px;
+  border: 1px solid white;
+  padding: 10px 10px;
+  background-color: black;
+  z-index: 100;
+}
+
+.note-edit-caption input {
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  border: none;
+}
+
+.note-edit-body textarea {
+  width: 100%;
+  height: 250px;
+  resize: none;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+}
+
+.note-edit-body {
+  margin-top: 20px;
+  position: relative;
+}
+
+.new-note {
+  width: 200px;
+  margin: 20px auto;
+  padding: 10px 10px;
+  cursor: pointer;
+  border: 1px solid white;
+  background-color: black;
+  border-radius: 5px;
+}
+
+.new-note-inp {
+  font-size: 1.1rem;
+}
+
+.tag-edit {
+  color: black;
+}
+
+.button-icon {
+  margin: 3px;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.close-form {
+  cursor: pointer;
+}
+
+.searched-tag {
+  background-color: white;
+  border-radius: 3px;
+  color: black;
+  padding: 2px 5px;
+  margin: 9px 5px;
+}
+
+.delete-tage {
+  cursor: pointer;
+}
+
+.colorised {
+  color: pink;
 }
