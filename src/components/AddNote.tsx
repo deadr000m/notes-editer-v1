@@ -1,21 +1,24 @@
-import React from 'react';
-import { AiOutlinePlus } from 'react-icons/ai';
+import { useAppDispatch } from '../hooks/hooks';
+import { addNote } from '../redux/slices/notesSlice';
+import { v4 as uuidv4 } from 'uuid';
+import { Tooltip, Button } from 'antd';
+import { PlusOutlined } from '@ant-design/icons/lib/icons';
 
-interface AddNoteProps {
-  setEditMode: (arg: boolean) => void;
-}
-export default function AddNote({ setEditMode }: AddNoteProps) {
+export default function AddNote() {
+  const dispatch = useAppDispatch();
   return (
-    <div
-      className="new-note"
-      onClick={() => {
-        setEditMode(true);
-      }}
-    >
-      <div className="new-note-inp">
-        NewNote
-        <AiOutlinePlus></AiOutlinePlus>
-      </div>
+    <div style={{ margin: '40px' }}>
+      <Tooltip title="add new note">
+        <Button
+          type="default"
+          icon={<PlusOutlined />}
+          onClick={() => {
+            dispatch(addNote({ id: uuidv4(), note: '', tags: [''] }));
+          }}
+        >
+          Add new note
+        </Button>
+      </Tooltip>
     </div>
   );
 }

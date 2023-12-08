@@ -8,7 +8,7 @@ const filterSlice = createSlice({
   name: 'filter',
   initialState: initialState,
   reducers: {
-    setFilter: (state, action) => {
+    setFilter: (state, action: PayloadAction<string>) => {
       state.push(action.payload);
     },
     deleteFilter: (state, action) => {

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { AiOutlineSearch } from 'react-icons/ai';
 import { useAppDispatch } from '../hooks/hooks';
 import { setFilter } from '../redux/slices/filterSlice';
+import { Form, Input, Button, Tooltip } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import { useState } from 'react';
 
 export default function FilterForm() {
   const [searchingTag, setSerchingTag] = useState<string>('');
@@ -9,27 +10,42 @@ export default function FilterForm() {
 
   return (
     <div>
-      TagSearch
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
+      Tag Search
+      <Form
+        name="basic"
+        // initialValues={{ remember: true }}
+        onFinish={() => {
           dispatch(setFilter(searchingTag));
-          setSerchingTag('');
+          setSerchingTag(''); //не работает
         }}
+        className="form-container"
       >
-        <input
-          type="text"
-          placeholder="tag search"
-          name="tag2"
-          value={searchingTag}
-          onChange={(e) => {
-            setSerchingTag(e.target.value);
-          }}
-        ></input>
-        <button type="submit">
-          <AiOutlineSearch></AiOutlineSearch>
-        </button>
-      </form>
+        <Form.Item
+          name="username"
+          className="form-item"
+          // rules={[
+          //   { required: true, message: 'Введите теги в формате #....  ' },
+          // ]}
+        >
+          <Input
+            style={{ width: '250px' }}
+            value={searchingTag} //не работает при setSerchingTag('')
+            placeholder="type with #"
+            onChange={(e) => {
+              setSerchingTag(e.target.value);
+            }}
+          />
+        </Form.Item>
+        <Form.Item className="form-item">
+          <Tooltip title="search">
+            <Button
+              shape="circle"
+              icon={<SearchOutlined />}
+              htmlType="submit"
+            />
+          </Tooltip>
+        </Form.Item>
+      </Form>
     </div>
   );
 }

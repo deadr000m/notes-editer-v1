@@ -3,23 +3,35 @@ import './App.css';
 import AddNote from './components/AddNote';
 import FilterForm from './components/FilterForm';
 import Grid from './components/Grid';
-import GridSearchedTag from './components/GridSearchedTag';
-import ModelWindow from './components/ModelWindow';
-import NoteEditForm from './components/NoteEditForm';
-import { useState } from 'react';
+import GridFilteringTags from './components/GridFilteringTags';
+import { useEffect } from 'react';
+import {
+  saveStateToIndexedDB,
+  loadStateFromIndexedDB,
+} from './utils/workWithDB';
+import { useAppSelector } from './hooks/hooks';
+import { useAppDispatch } from './hooks/hooks';
 
 function App() {
-  let [editMode, setEditMode] = useState<boolean>(false);
-  const toggleEditMore = (): void => {
-    setEditMode(!editMode);
-  };
+  const dispatch = useAppDispatch();
+  const notes = useAppSelector((state) => state.notes);
+  console.log('note state:' + JSON.stringify(notes));
+
+  useEffect(() => {
+    console.log('при mounting');
+    loadStateFromIndexedDB(dispatch);
+  }, []);
+  useEffect(() => {
+    console.log('при изменении состояния useEffect');
+    saveStateToIndexedDB(notes);
+  }, [notes]);
+
   return (
     <div className="App">
-      <ModelWindow editMode={editMode} toggleEditMore={toggleEditMore}>
-        <NoteEditForm toggleEditMore={toggleEditMore} />
-      </ModelWindow>
-      <AddNote setEditMode={setEditMode}></AddNote>
+      <AddNote></AddNote>
       <FilterForm></FilterForm>
+      <GridFilteringTags></GridFilteringTags>
+      <Grid></Grid>
     </div>
   );
 }
