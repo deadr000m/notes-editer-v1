@@ -16,7 +16,7 @@ export default function FilterForm() {
         // initialValues={{ remember: true }}
         onFinish={() => {
           dispatch(setFilter(searchingTag));
-          setSerchingTag(''); //не работает
+          // setSerchingTag(''); //не работает
         }}
         className="form-container"
       >
