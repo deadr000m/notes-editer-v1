@@ -22,8 +22,10 @@ function App() {
     loadStateFromIndexedDB(dispatch);
   }, []);
   useEffect(() => {
-    console.log('при изменении состояния useEffect');
-    saveStateToIndexedDB(notes);
+    if (notes.length !== 0) {
+      console.log('при updating');
+      saveStateToIndexedDB(notes);
+    }
   }, [notes]);
 
   return (
