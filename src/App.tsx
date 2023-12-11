@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     console.log('при mounting');
     loadStateFromIndexedDB(dispatch);
-  }, []);
+  }, [dispatch]);
   useEffect(() => {
     if (notes.length !== 0) {
       console.log('при updating');
