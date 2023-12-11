@@ -1,4 +1,4 @@
-import { openDB, IDBPDatabase, IDBPTransaction } from 'idb';
+import { openDB, IDBPDatabase, IDBPTransaction, deleteDB } from 'idb';
 import { Dispatch } from 'redux';
 import { useAppDispatch } from '../hooks/hooks';
 import { setInitialState } from '../redux/slices/notesSlice';
@@ -36,6 +36,7 @@ export const loadStateFromIndexedDB = async (dispatch: Dispatch<any>) => {
   const jsonState = await store.get('state');
   await tx.done;
   await db.close();
+  await deleteDB(DB_NAME);
 
   if (jsonState) {
     const state = JSON.parse(jsonState as string);
