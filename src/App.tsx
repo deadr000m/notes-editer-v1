@@ -22,10 +22,10 @@ function App() {
     loadStateFromIndexedDB(dispatch);
   }, []);
   useEffect(() => {
-    if (notes.length !== 0) {
-      console.log('при updating');
-      saveStateToIndexedDB(notes);
-    }
+    // if (notes.length !== 0) {
+    console.log('при updating');
+    saveStateToIndexedDB(notes);
+    // }
   }, [notes]);
 
   return (
