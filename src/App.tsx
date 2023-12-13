@@ -5,28 +5,13 @@ import FilterForm from './components/FilterForm';
 import Grid from './components/Grid';
 import GridFilteringTags from './components/GridFilteringTags';
 import { useEffect } from 'react';
-import {
-  saveStateToIndexedDB,
-  loadStateFromIndexedDB,
-} from './utils/workWithDB';
+
 import { useAppSelector } from './hooks/hooks';
 import { useAppDispatch } from './hooks/hooks';
 
 function App() {
-  const dispatch = useAppDispatch();
-  const notes = useAppSelector((state) => state.notes);
-  console.log('note state:' + JSON.stringify(notes));
-
-  useEffect(() => {
-    console.log('при mounting');
-    loadStateFromIndexedDB(dispatch);
-  }, []);
-  useEffect(() => {
-    // if (notes.length !== 0) {
-    console.log('при updating');
-    saveStateToIndexedDB(notes);
-    // }
-  }, [notes]);
+  const fullState = useAppSelector((state) => state);
+  console.log('note state:' + JSON.stringify(fullState));
 
   return (
     <div className="App">
